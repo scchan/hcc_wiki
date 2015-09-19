@@ -5,7 +5,7 @@ There is a feature branch named grid_launch_integration that allows building of 
 git clone git@bitbucket.org:multicoreware/cppamp-driver-ng-35.git $kalmar_src
 cd $kalmar_src && git checkout grid_launch_integration
 ```
-Run `git-show` to make sure it's on commit `# c865cd2...`
+Run `git show` to make sure it's on commit `# c865cd2...`
 
 You must also checkout the branch under clang. If this is a fresh clone of Kalmar, you must run cmake first to fetch clang
 ```
@@ -17,7 +17,7 @@ cmake ../$kalmar_src
 cd $kalmar_src/compiler/tools/clang
 git checkout grid_launch_integration
 ```
-Run `git-show` to make sure it's on commit `# 29b33ed...`
+Run `git show` to make sure it's on commit `# 29b33ed...`
 
 ### Continue with build:
 ```
