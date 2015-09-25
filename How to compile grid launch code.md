@@ -60,7 +60,7 @@ Replace ```--build``` with ```--install``` if you're using an installed version 
 
 Separate linkage also works:  
 ```
-clang `clamp-config --build --cxxflags` -hc vectoradd_hc.cpp -o vectoradd.o
+clang `clamp-config --build --cxxflags` -hc vectoradd_hc.cpp -c -o vectoradd.o
 clang `clamp-config --build --ldflags` -hc vectoradd.o -o vectoradd
 ```
 
