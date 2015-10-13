@@ -15,3 +15,21 @@ And it comes with a few HSA-specific features:
 - true asynchronous kernel launching behavior
 - additional HSA-specific APIs
 
+# How to use it
+
+HC comes with two header files as of now:
+
+- <hc.hpp> : Main header file for HC
+- <hc_math.hpp> : Math functions for HC
+
+Most HC APIs are stored under "hc" namespace, and the class name is the same as their counterpart in C++AMP:
+
+|| HC || C++AMP ||
+| Concurrency::accelerator | hc::accelerator |
+| Concurrency::accelerator_view | hc::accelerator_view |
+| Concurrency::extent | hc::extent |
+| Concurrency::index | hc::index |
+| Concurrency::completion_future | hc::completion_future |
+| Concurrency::array | hc::array |
+| Concurrency::array_view | hc::array_view |
+
