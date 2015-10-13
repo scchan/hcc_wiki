@@ -23,6 +23,12 @@ Tested targets are:
 
 ****
 
+# API documentation
+
+[API reference of HCC](http://whchung.bitbucket.org)
+
+****
+
 ## Compile and install other dependencies ##
 
 Make sure you have the following packages installed:
