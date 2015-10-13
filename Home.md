@@ -7,7 +7,7 @@ More information: MulticoreWare's [C++ AMP software development](http://www.mult
 This repository hosts HCC, a C++ compiler implementation project. The goal is to implement a compiler frontend which supports the following parallel programming paradigms:
 
 * C++AMP 1.2
-* [HC], an HSA-specific extension to C++AMP 1.2.
+* [HC](HC mode), an HSA-specific extension to C++AMP 1.2.
 * C++17 parallel STL
 
 and transforms it into HSAIL, SPIR binary, or OpenCL-C.
