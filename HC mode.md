@@ -10,12 +10,15 @@ HC is a C++ API derived from C++AMP. It has nearly identical features with C++AM
 
 And it comes with a few HSA-specific features:
 
+- relaxed rules in operations allowed in kernels
 - new syntax of tiled_extent and tiled_index
 - dynamic group segment memory allocation
 - true asynchronous kernel launching behavior
 - additional HSA-specific APIs
 
-# How to use it
+---
+
+# HC API
 
 HC comes with two header files as of now:
 
@@ -34,3 +37,25 @@ Most HC APIs are stored under "hc" namespace, and the class name is the same as 
 | Concurrency::array | hc::array |
 | Concurrency::array_view | hc::array_view |
 
+---
+
+# How to build programs with HC API
+
+Use "hcc-config", instead of "clamp-config", or you could manually add "-hc" when you invoke clang++. Also, "hcc" is added as an alias for "clang++".
+
+For example:
+
+```
+hcc `hcc-config --cxxflags --ldflags` foo.cpp -o foo
+```
+
+
+---
+
+# HC-specific features
+
+- relaxed rules in operations allowed in kernels
+- new syntax of tiled_extent and tiled_index
+- dynamic group segment memory allocation
+- true asynchronous kernel launching behavior
+- additional HSA-specific APIs
