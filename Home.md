@@ -1,42 +1,465 @@
-# Welcome
+# Kalmar : An open source C++ compiler for heterogeneous devices #
+The Kalmar project (previously named as Clamp) is managed and primarily developed by [MulticoreWare](http://www.multicorewareinc.com/), a leading developer of heterogeneous software development platforms, tools and applications.  
+More information: MulticoreWare's [C++ AMP software development](http://www.multicorewareinc.com/c-amp-software-development-services/).
 
-Welcome to your wiki! This is the default page we've installed for your convenience. Go ahead and edit it.
+# About Kalmar
 
-## Wiki features
+This repository hosts Kalmar, a C++ compiler implementation project. The goal is to implement a compiler frontend which supports the following parallel programming paradigms:
 
-This wiki uses the [Markdown](http://daringfireball.net/projects/markdown/) syntax.
+* C++AMP 1.2
+* C++17 parallel STL
 
-The wiki itself is actually a git repository, which means you can clone it, edit it locally/offline, add images or any other file type, and push it back to us. It will be live immediately.
+and transforms it into HSAIL, SPIR binary, or OpenCL-C.
 
-Go ahead and try:
+Tested targets are:
+
+* Khronos OpenCL SPIR 1.2 and OpenCL C for
+    * AMD Stack/AMD GPU with Khronos SPIR 1.2 and OpenCL C
+    * NVIDIA Stack/NVIDIA GPU with OpenCL C
+    * [Apple Mac OS X 10.9 Stack](InstallOnMacOSX) with OpenCL C
+* [HSAIL and BRIG](HSA Support Status) for HSA devices:
+    * AMD Kaveri APU
+
+****
+
+## Compile and install other dependencies ##
+
+Make sure you have the following packages installed:
+
+* cmake
+* git
+* subversion
+* g++
+* libstdc++-4.8-dev
+* libdwarf-dev
+* libelf-dev
+* libtinfo-dev
+* libc6-dev-i386
+* gcc-multilib
+* llvm
+* llvm-dev
+* llvm-runtime
+* libc++1
+* libc++-dev
+* re2c
+* libncurses5-dev
+
+
+****
+
+# Build from source
+
+Please use the following instructions to build from source as of now:
 
 ```
-$ git clone https://whchung@bitbucket.org/whchung/cppamp-driver-ng-35.git/wiki
+git clone https://bitbucket.org/multicoreware/cppamp-driver-ng-35.git src
+mkdir build
+cd build
+cmake ../src
+make -j4 world
+make -j4
 ```
 
-Wiki pages are normal files, with the .md extension. You can edit them locally, as well as creating new ones.
+****
 
-## Syntax highlighting
+# Downloads
 
+In the latest release (0.7.0), OpenCL and HSA are unified into one single release package.
 
-You can also highlight snippets of text (we use the excellent [Pygments][] library).
+### Download links for Ubuntu x86-64 packages ###
+- [clamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/kalmar-0.6.0-f69d9d4-02e68c9-Linux.deb)
+- [libcxxamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/libcxxamp-0.6.0-f69d-Linux.deb)
+- (optional) [clamp-bolt](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/clamp-bolt-1.2.0-hsa-milestone4-Linux.deb)
+- (optional) [boost](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/boost_1_55_0-hsa-milestone3.tar.gz)
 
-[Pygments]: http://pygments.org/
+### Download links for Ubuntu x86-64 tarballs ###
+- [clamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/kalmar-0.6.0-f69d9d4-02e68c9-Linux.tar.gz)
+- [libcxxamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/libcxxamp-0.6.0-f69d-Linux.tar.gz)
+- (optional) [clamp-bolt](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/clamp-bolt-1.2.0-hsa-milestone4-Linux.tar.gz)
+- (optional) [boost](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/boost_1_55_0-hsa-milestone3.tar.gz)
 
+See also [Downloads](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads) for older versions
 
-Here's an example of some Python code:
+****
+
+# Install #
+
+## Ubuntu binary packages for x86-64 ##
+
+To install, download clamp and libcxxamp DEB files from links above, and:
 
 ```
-#!python
-
-def wiki_rocks(text):
-    formatter = lambda t: "funky"+t
-    return formatter(text)
+sudo dpkg -i libcxxamp-<version>-Linux.deb kalmar-<version>-Linux.deb
 ```
 
+Default installation directory is /opt/kalmar.
 
-You can check out the source of this page to see how that's done, and make sure to bookmark [the vast library of Pygment lexers][lexers], we accept the 'short name' or the 'mimetype' of anything in there.
-[lexers]: http://pygments.org/docs/lexers/
+## Binary tarballs for x86-64 ##
+
+To install, download kalmar and libcxxamp tar.gz files from links above, and:
+
+```
+sudo tar zxvf libcxxamp-<version>-Linux.tar.gz
+sudo tar zxvf kalmar-<version>-Linux.tar.gz
+```
+
+Default installation directory is /opt/kalmar.
+
+## Dynamic Libraries ##
+
+Since 0.4.0 platform-specific libraries and libc++ are built as dynamic libraries.  After building, please change /etc/ld.so.conf to let dynamic libraries be locatable at runtime.
+
+If you install deb files or tarballs, please add the following lines to /etc/ld.so.conf :
+```
+# C++AMP runtime libraries
+# libc++ & C++AMP runtime implementations
+/opt/kalmar/lib
+```
+
+If you build from source, please add the following lines to /etc/ld.so.conf:
+```
+# C++AMP runtime implementations
+(path_of_your_build_directory)/build/Release/lib
+```
+
+Please make sure OpenCL or HSA runtime libraries can be located by ld.so as well.  For example, your ld.so.conf might also need to include:
+```
+# OpenCL runtime (libOpenCL.so)
+/opt/AMDAPP/lib/x86_64
+
+# HSA runtime (libhsaruntime-64.so)
+/opt/hsa/lib
+```
+
+Always remember to use: sudo ldconfig -v to reload ld.so cache.
+
+## Install on Mac OS X (Experimental) ##
+
+See [InstallOnMacOSX](InstallOnMacOSX)
+
+## Install on AMD Kaveri HSA (Experimental) ##
+
+See [HSA Support Status](HSA Support Status)
+
+****
+
+# How to compile a C++ AMP source code #
+
+A new clang driver has been merged in the latest release to have a streamlined build process.  Here's an example to build (compile + link) in 1-step:
+
+```
+# Assume Kalmar and libcxxamp are installed and added to PATH
+# use --install if you install Kalmar with ubuntu package
+# use --build if you build from source
+# if not specified, default would be --install
+clang++ `clamp-config --install --cxxflags --ldflags` -o test.out test.cpp
+```
+
+To use HSA-extension:
+```
+# Use -Xclang -fhsa-ext to enable HSA extension
+clang++ `clamp-config --install --cxxflags --ldflags` -Xclang -fhsa-ext foo.cpp -o foo.out
+```
+
+To emit object files.  Please notice GPU codes will be stored in a special section ".kernel".
+```
+# Use -c to emit object files.
+# GPU kernels will be stored in .kernel section
+clang++ `clamp-config --install --cxxflags` -c foo.cpp -o foo.o
+```
+
+To link objects.  Clang will extract all ".kernel" sections from each objects and lower to target architecture (SPIR/OpenCL C/HSAIL)
+```
+# clang will extract all .kernel sections from each objects and lower to target architecture (SPIR/OpenCL C/HSAIL)
+clang++ `clamp-config --install --ldflags` foo.o bar.o -o foo.out
+```
+
+Since 0.5.0, it is also possible to generate CPU-only codes which don't need any GPU platforms such as OpenCL or HSA.
+```
+clang++ `clamp-config --install --cxxflags --ldflags` -cpu -o test.out test.cpp
+```
+
+Since 0.6.0, it's possible to check Kalmar version for debugging purpose:
+```
+clang++ --version
+```
+
+Example output would be:
+```
+Kalmar clang version 3.5.0 (tags/RELEASE_350/final) (based on Kalmar 0.6.0-8769a29-c54a03c LLVM 3.5.0svn)
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+
+- 3.5.0 is the version of clang
+- 0.6.0 is the package version of Kalmar
+- 8769a29 is the git commit # of Kalmar driver
+- c54a03c is the git commit # of Kalmar compiler
+```
+
+****
+
+# Kalmar macros #
+
+The following macros will be defined in various stages when you use Kalmar compiler:
 
 
-Have fun!
+- ```__KALMAR_CC__``` : This macro is always defined.
+- ```__KALMAR_ACCELERATOR__``` : This macro is defined in when kernel codes are compiled.
+- ```__KALMAR_CPU__``` : This macro is defined when host codes are compiled.
+
+There are a few more details about the values ```__KALMAR_ACCELERATOR__``` and ```__KALMAR_CPU__```.  Normally users aren't expected to check the values of them.
+
+- ```__KALMAR_ACCELERATOR__``` : The macro has value 1 in case the compiler is building for "normal" GPU targets such as OpenCL or HSA.  The value is 2 if we are building kernels for execution on x86 (ie. when you use -cpu option).
+- ```__KALMAR_CPU__``` : The macro has value 1 in case the compiler is building host codes for "normal" GPU targets such as OpenCL or HSA.  The value is 2 if we are building host codes for kernels to be executed on x86 (ie. when you use -cpu option).
+
+****
+
+# Choose C++AMP runtime #
+
+C++AMP programs will automatically detect available GPU platform on the system, with the following precendence:
+
+- HSA
+- OpenCL
+- CPU
+
+In case you want to force C++AMP runtime to use a certain runtime, you can use:
+```
+# force set C++AMP runtime to HSA
+export CLAMP_RUNTIME=HSA
+
+# force set C++AMP runtime to OpenCL
+export CLAMP_RUNTIME=CL
+
+# force set C++AMP runtime to CPU
+export CLAMP_RUNTIME=CPU
+```
+
+To turn auto detection back on:
+```
+unset CLAMP_RUNTIME
+```
+
+Please notice if C++AMP runtime find the specified runtime couldn't be loaded it would fall back to automatic detection.
+
+****
+
+# SPIR v. OpenCL C #
+
+On OpenCL machines with SPIR support, SPIR kernels will be used instead of OpenCL C ones.  You can alter the precedence by:
+
+```
+# turn off SPIR, force use OpenCL C
+export CLAMP_NOSPIR=1
+```
+
+It will force C++AMP runtime to pick OpenCL C instead of SPIR.  To turn it back on:
+
+```
+# turn on SPIR
+unset CLAMP_NOSPIR
+```
+
+The environment variable CLAMP_NOSPIR has no effect on devices without SPIR support.
+
+****
+
+# Sample codes #
+
+We have collected a few [sample codes](https://bitbucket.org/multicoreware/cppamp-sandbox).  The package is also available for [download](https://bitbucket.org/multicoreware/cppamp-sandbox/get/master.tar.gz).
+
+You will need to use the build script **buildme.binary** to correctly invoke the compiler and build C++AMP codes on Linux. See [README.BINARY.TXT](https://bitbucket.org/multicoreware/cppamp-sandbox/src/master/README.BINARY.txt) for details.
+
+****
+
+# News
+
+## 05/31/2015 ##
+
+Maintenance Release (0.6.0 Release)
+
+### Changes ###
+* Switch to Clang 3.5 as the default implementation
+* Support HSA 1.0F
+* Fix memory leaks in HSA
+* Various bug fixes
+* Preliminary C++17 Parallel STL implementation 
+
+### Download links for Ubuntu x86-64 packages ###
+- [clamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/kalmar-0.6.0-8769a29-c54a03c-Linux.deb)
+- [libcxxamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/libcxxamp-0.6.0-8769-Linux.deb)
+- (optional) [clamp-bolt](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/clamp-bolt-1.2.0-hsa-milestone4-Linux.deb)
+- (optional) [boost](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/boost_1_55_0-hsa-milestone3.tar.gz)
+
+### Download links for Ubuntu x86-64 tarballs ###
+- [clamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/kalmar-0.6.0-8769a29-c54a03c-Linux.tar.gz)
+- [libcxxamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/libcxxamp-0.6.0-8769-Linux.tar.gz)
+- (optional) [clamp-bolt](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/clamp-bolt-1.2.0-hsa-milestone4-Linux.tar.gz)
+- (optional) [boost](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/boost_1_55_0-hsa-milestone3.tar.gz)
+
+
+## 02/01/2015 ##
+
+HSA/OpenCL Unified Release (0.5.0 Release Milestone 4)
+
+### Changes ###
+* Support HSA 1.0P
+* Fix one major memory leak within Clang 3.3
+* Various bug fixes
+* Support more generic SVM on HSA.  It is now possible to capture host objects by reference in GPU kernels.
+* Preliminary support "auto-auto" feature on HSA.  GPU kernels do not necessarily have to carry restrict(amp) specifier.
+* Clang 3.5 support is mostly on par with Clang 3.3
+
+### Download links for Ubuntu x86-64 packages ###
+- [clamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/clamp-0.5.0-hsa-milestone4-Linux.deb)
+- [libcxxamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/libcxxamp-0.5.0-hsa-milestone4-Linux.deb)
+- (optional) [clamp-bolt](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/clamp-bolt-1.2.0-hsa-milestone4-Linux.deb)
+- (optional) [boost](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/boost_1_55_0-hsa-milestone3.tar.gz)
+
+### Clang 3.5 upgrade ###
+
+A new repository of Clang/LLVM 3.5 is available.  To use it, please use the following instructions to build from source as of now:
+
+```
+git clone https://bitbucket.org:/multicoreware/cppamp-driver-ng-35.git src
+mkdir build
+cd build
+cmake ../src
+make -j4 world && make
+```
+
+****
+
+## 11/08/2014 ##
+
+HSA/OpenCL Unified Release (0.4.0 Release Milestone 3)
+
+### Changes ###
+* Unified HSA build and OpenCL build into one release package
+* Simplified cmake procedure.
+* Introduced performance improvements in OpenCL and HSA.
+* Implemented "fat binary" : one C++AMP binary could now contain multiple versions of GPU kernels (HSA / OpenCL)
+* Decoupled C++AMP programs from C++AMP runtimes.  It's now possible to use an environment variable to dynamically pick which GPU platform to use.
+* Implemented a preliminary port of AMD Bolt C++AMP version from Windows to Linux.
+* Implemented a preliminary version of transforming C++ STL calls to AMD Bolt calls, in order to make normal C++ programs be accelerated by GPU.
+
+### Download links for Ubuntu x86-64 packages ###
+- [clamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/clamp-0.4.0-hsa-milestone3-Linux.deb)
+- [libcxxamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/libcxxamp-0.4.0-hsa-milestone3-Linux.deb)
+- (optional) [clamp-bolt](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/clamp-bolt-1.2.0-hsa-milestone3-Linux.deb)
+- (optional) [boost](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/boost_1_55_0-hsa-milestone3.tar.gz)
+
+****
+
+## 9/29/2014 ##
+
+Update OpenCL/SPIR Relase (0.3.0 Release Milestone 2)
+
+### Changes ###
+* OpenCL/SPIR version based on the codebase for Second HSA Release
+* Improved clang driver interface
+* Implemented restrict(auto) which is an optional feature in C++AMP Chapter 13.
+
+### Download links for Ubuntu x86-64 (OpenCL/SPIR) packages ###
+- [clamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/clamp-0.3.0-hsa-milestone2-opencl-Linux.deb)
+- [libcxxamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/libcxxamp-0.3.0-hsa-milestone2-opencl-Linux.deb)
+
+****
+
+## 9/27/2014 ##
+
+Second HSA Rlease (0.3.0 Release Milestone 2)
+
+### Changes ###
+* Improved clang driver interface
+* Implemented restrict(auto) which is an optional feature in C++AMP Chapter 13.
+* Relaxed C++ language rules on HSA.
+* Implemented new asynchronous parallel_for_each interface on HSA.
+* See [HSA Support Status](HSA Support Status) for more detailed HSA-related information.
+
+### Download links for Ubuntu x86-64 (HSA) packages ###
+- [clamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/clamp-0.3.0-hsa-milestone2-Linux.deb)
+- [libcxxamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/libcxxamp-0.3.0-hsa-milestone2-Linux.deb)
+
+****
+
+## 8/18/2014 ##
+
+First HSA Release (0.3.0 Release)
+
+### Changes ###
+* First C++AMP for HSA release.
+* See [HSA Support Status](HSA Support Status) for more detailed HSA-related information.
+* Please notice C++AMP for HSA package is NOT compatible with OpenCL/SPIR at this moment.
+* Please also notice C++AMP for HSA does NOT depend on HSA Okra runtime anymore, and Okra port would NOT be supported anymore.
+
+### Download links for Ubuntu x86-64 (HSA) packages ###
+- [clamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/clamp-0.3.0-hsa-milestone1-Linux.deb)
+- [libcxxamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/libcxxamp-0.3.0-hsa-milestone1-Linux.deb)
+
+***
+
+## 7/2/2014 ##
+
+Updated OpenCL/SPIR Release
+
+### Changes ###
+* More bug fixes.  Conformance rate is more than 99% on SPIR now.  (passed + skipped).
+
+### Download links for Ubuntu x86-64 (OpenCL/SPIR) packages ###
+- [clamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/clamp-0.2.0-milestone5-135-g2580-Linux.tar.gz)
+- [libcxxamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/libcxxamp-0.2.0-milestone5-135-g2580-Linux.tar.gz)
+
+***
+
+## 6/1/2014 ##
+Milestone 5 (0.2.0 Release)
+
+### Changes ###
+* Default installation directory changed to /opt/clamp .
+* Changed and encapsulated a few compile options.  We suggest to use clamp-config to abstract away all compile options.
+* Various bug fixes thanks to MS Conformance Tests.  Now we have 97.5% conformance rate on SPIR (passed + skipped).
+
+### Download links for Ubuntu x86-64 (OpenCL/SPIR) packages ###
+* [clamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/clamp-0.2.0-milestone5-Linux.deb)
+* [libcxxamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/libcxxamp-0.2.0-milestone5-Linux.deb)
+
+****
+
+## 3/20/2014 ##
+Milestone 4 (HSA/Okra port)
+
+* HSA Foundation's HSAIL using Okra runtime for HSA devices (e.g. AMD Kaveri).
+    * See the [latest status of HSAIL/Okra support](HSAIL%20Support%20Status) for installation instructions and binary packages.
+* Note that the HSA/Okra port requires a different configuration flag to build and is currently not compatible with the OpenCL/SPIR version.
+
+****
+
+## 3/18/2014 ##
+Milestone 3 Updates (140 patches since milestone 3)
+
+### Changes ###
+* Various bug fixes thanks to MS Conformance Tests
+
+****
+
+## 3/15/2014 ##
+
+A preliminary port to [HSA Okra runtime](https://github.com/HSAFoundation/Okra-Interface-to-HSA-Device) is functional on a Kaveri machine. The most current status of HSAIL support can be found at [here](HSAIL%20Support%20Status)
+
+
+****
+
+# Older News #
+[Here](OlderNews)
+
+****
+
+# Roadmap 
+
+See [here](Roadmap)
+
+****
+
+# More about this project and build instruction
+
+See [the Overview](https://bitbucket.org/multicoreware/cppamp-driver-ng/overview)
