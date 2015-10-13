@@ -1,10 +1,10 @@
-# Kalmar : An open source C++ compiler for heterogeneous devices #
-The Kalmar project (previously named as Clamp) is managed and primarily developed by [MulticoreWare](http://www.multicorewareinc.com/), a leading developer of heterogeneous software development platforms, tools and applications.  
+# HCC : An open source C++ compiler for heterogeneous devices #
+The HCC project (previously named as Kalmar, Clamp) is managed and primarily developed by [MulticoreWare](http://www.multicorewareinc.com/), a leading developer of heterogeneous software development platforms, tools and applications.  
 More information: MulticoreWare's [C++ AMP software development](http://www.multicorewareinc.com/c-amp-software-development-services/).
 
-# About Kalmar
+# About HCC
 
-This repository hosts Kalmar, a C++ compiler implementation project. The goal is to implement a compiler frontend which supports the following parallel programming paradigms:
+This repository hosts HCC, a C++ compiler implementation project. The goal is to implement a compiler frontend which supports the following parallel programming paradigms:
 
 * C++AMP 1.2
 * C++17 parallel STL
@@ -148,8 +148,8 @@ See [HSA Support Status](HSA Support Status)
 A new clang driver has been merged in the latest release to have a streamlined build process.  Here's an example to build (compile + link) in 1-step:
 
 ```
-# Assume Kalmar and libcxxamp are installed and added to PATH
-# use --install if you install Kalmar with ubuntu package
+# Assume HCC and libcxxamp are installed and added to PATH
+# use --install if you install HCC with ubuntu package
 # use --build if you build from source
 # if not specified, default would be --install
 clang++ `clamp-config --install --cxxflags --ldflags` -o test.out test.cpp
@@ -179,31 +179,31 @@ Since 0.5.0, it is also possible to generate CPU-only codes which don't need any
 clang++ `clamp-config --install --cxxflags --ldflags` -cpu -o test.out test.cpp
 ```
 
-Since 0.6.0, it's possible to check Kalmar version for debugging purpose:
+Since 0.6.0, it's possible to check HCC version for debugging purpose:
 ```
 clang++ --version
 ```
 
 Example output would be:
 ```
-Kalmar clang version 3.5.0 (tags/RELEASE_350/final) (based on Kalmar 0.6.0-8769a29-c54a03c LLVM 3.5.0svn)
+HCC clang version 3.5.0 (tags/RELEASE_350/final) (based on HCC 0.6.0-8769a29-c54a03c LLVM 3.5.0svn)
 Target: x86_64-unknown-linux-gnu
 Thread model: posix
 
 - 3.5.0 is the version of clang
-- 0.6.0 is the package version of Kalmar
-- 8769a29 is the git commit # of Kalmar driver
-- c54a03c is the git commit # of Kalmar compiler
+- 0.6.0 is the package version of HCC
+- 8769a29 is the git commit # of HCC driver
+- c54a03c is the git commit # of HCC compiler
 ```
 
 ****
 
-# Kalmar macros #
+# HCC macros #
 
-The following macros will be defined in various stages when you use Kalmar compiler:
+The following macros will be defined in various stages when you use HCC compiler:
 
 
-- ```__KALMAR_CC__``` : This macro is always defined.
+- ```__HCC__``` : This macro is always defined.
 - ```__KALMAR_ACCELERATOR__``` : This macro is defined in when kernel codes are compiled.
 - ```__KALMAR_CPU__``` : This macro is defined when host codes are compiled.
 
