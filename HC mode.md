@@ -22,9 +22,10 @@ HC comes with two header files as of now:
 - <hc.hpp> : Main header file for HC
 - <hc_math.hpp> : Math functions for HC
 
-Most HC APIs are stored under "hc" namespace, and the class name is the same as their counterpart in C++AMP:
+Most HC APIs are stored under "hc" namespace, and the class name is the same as their counterpart in C++AMP "Concurrency" namespace.  Users of C++AMP should find it easy to switch from C++AMP to HC.
 
-|| HC || C++AMP ||
+| HC | C++AMP |
+|----|--------|
 | Concurrency::accelerator | hc::accelerator |
 | Concurrency::accelerator_view | hc::accelerator_view |
 | Concurrency::extent | hc::extent |
