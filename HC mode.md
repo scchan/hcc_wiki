@@ -49,6 +49,10 @@ For example:
 hcc `hcc-config --cxxflags --ldflags` foo.cpp -o foo
 ```
 
+---
+
+# HCC built-in macros
+
 
 ---
 
