@@ -82,6 +82,11 @@ HCC is a single-source compiler where kernel codes and host codes can reside in 
 | ```__KALMAR_ACCELERATOR__``` | not 0 in case the compiler runs in kernel code compilation mode |
 | ```__KALMAR_CPU__``` | not 0 in case the compiler runs in host code compilation mode |
 
+There are a few more details about the values ```__KALMAR_ACCELERATOR__``` and ```__KALMAR_CPU__```.  Normally users aren't expected to check the values of them.
+
+- ```__KALMAR_ACCELERATOR__``` : The macro has value 1 in case the compiler is building for "normal" GPU targets such as OpenCL or HSA.  The value is 2 if we are building kernels for execution on x86 (ie. when you use -cpu option).
+- ```__KALMAR_CPU__``` : The macro has value 1 in case the compiler is building host codes for "normal" GPU targets such as OpenCL or HSA.  The value is 2 if we are building host codes for kernels to be executed on x86 (ie. when you use -cpu option).
+
 ---
 
 # HC-specific features
