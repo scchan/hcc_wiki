@@ -63,7 +63,7 @@ Built-in macros:
 | ```__hcc_patchlevel__``` | patchlevel of HCC |
 | ```__hcc_version__``` | combined string of ```__hcc_major__```, ```__hcc_minor__```, ```__hcc_patchlevel__``` |
 
-The rule for ```__hcc_patchlevel__``` is: yyWW-(HCC driver git commit #)-(HCC clang git commit #) |
+The rule for ```__hcc_patchlevel__``` is: yyWW-(HCC driver git commit #)-(HCC clang git commit #)
 - yy stands for the last 2 digits of the year
 - WW stands for the week number of the year
 
