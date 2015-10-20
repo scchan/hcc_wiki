@@ -53,6 +53,24 @@ hcc `hcc-config --cxxflags --ldflags` foo.cpp -o foo
 
 # HCC built-in macros
 
+Built-in macros:
+- __HCC__ : always be 1
+- __hcc_major__ : major version number of HCC
+- __hcc_minor__ : minor version number of HCC
+- __hcc_patchlevel__ : patchlevel of HCC, the rule is: yyWW-(HCC driver git commit #)-(HCC clang git commit #)
+  - yy stands for the last 2 digits of the year
+  - WW stands for the week number of the year
+- __hcc_version__ : combined string of __hcc_major__, __hcc_minor__, __hcc_patchlevel__
+
+Macros for language modes in use:
+- __KALMAR_AMP__ : 1 in case in C++ AMP mode (-std=c++amp)
+- __KALMAR_HC__ : 1 in case in HC mode (-hc)
+
+Compilation mode:
+HCC is a single-source compiler where kernel codes and host codes can reside in the same file. Internally HCC would trigger 2 compilation iterations, and the following macros can be user by user programs to determine which mode the compiler is in.
+
+- __KALMAR_ACCELERATOR__ : not 0 in case the compiler runs in kernel code compilation mode
+- __KALMAR_CPU__ : not 0 in case the compiler runs in host code compilation mode
 
 ---
 
