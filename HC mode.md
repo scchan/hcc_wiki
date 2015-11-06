@@ -27,7 +27,7 @@ HC comes with two header files as of now:
 
 Most HC APIs are stored under "hc" namespace, and the class name is the same as their counterpart in C++AMP "Concurrency" namespace.  Users of C++AMP should find it easy to switch from C++AMP to HC.
 
-| HC | C++AMP |
+| C++AMP | HC |
 |----|--------|
 | Concurrency::accelerator | hc::accelerator |
 | Concurrency::accelerator_view | hc::accelerator_view |
