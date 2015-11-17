@@ -9,7 +9,7 @@ This repository hosts HCC, a C++ compiler implementation project. The goal is to
 * C++AMP 1.2
 * [HC](HC mode), an HSA-specific extension to C++AMP 1.2.
 * C++17 parallel STL
-* OpenMP 4.0(OpenMP)
+* [OpenMP 4.0](OpenMP)
 
 and transforms it into HSAIL, SPIR binary, or OpenCL-C.
 
