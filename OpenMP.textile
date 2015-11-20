@@ -80,3 +80,11 @@ $ make ctest
 
 Note that you will encounter a build error with _make clean_ in the first time, that's a normal situation.
 
+S Number of failed tests should be 7. These test cases are not supported by upstream clang-omp, so the we cannot yet be supported in Kalmar, and we consider this being regression-free.
+* omp_for_schedule_guided
+* omp_for_schedule_guided + orphaned mode
+* omp_task_untied
+* omp_task_untied + orphaned mode
+* omp_taskyield + orphaned mode
+* omp_task_final
+* omp_task_final + orphaned mode
