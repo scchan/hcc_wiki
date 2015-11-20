@@ -1,1 +1,0 @@
-placeholder for information with respect to OpenMP support in HCC.
