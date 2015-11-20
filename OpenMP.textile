@@ -71,3 +71,12 @@ $ ./compile_exec.sh
 
 You should be able to see all samples compiled and executed without error message.
 
+h3. OpenMP3.1_Validation (OpenUH OpenMP test suite)
+
+pre. 
+$ cd kalmar-omp-driver/OpenMP3.1_Validation
+$ make clean
+$ make ctest
+
+Note that you will encounter a build error with _make clean_ in the first time, that's a normal situation.
+
