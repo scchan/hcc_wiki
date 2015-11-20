@@ -1,6 +1,6 @@
 The instructions below assume you are in _$HOME/clang-omp_. The compiler would be built under _$HOME/clang-omp/b-kalmar-omp-driver_. The OpenMP runtime would be put under _$HOME/clang-omp/openmp_.
 
-h2. Build the Deliverables
+h2. Build the Kalmar-OMP and OpenMP runtime
 
 The deliverables include two parts:
 * Kalmar-OMP: OpenMP-enabled Kalmar
