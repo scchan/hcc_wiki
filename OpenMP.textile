@@ -51,6 +51,23 @@ $ export CPLUS_INCLUDE_PATH=$HOME/clang-omp/openmp/runtime/exports/common/includ
 $ export LIBRARY_PATH=$HOME/clang-omp/openmp/runtime/exports/lin_32e/lib:$LIBRARY_PATH
 $ export LD_LIBRARY_PATH=$HOME/clang-omp/openmp/runtime/exports/lin_32e/lib:$LD_LIBRARY_PATH
 
+h2. Running benchmarks
 
+Note that you need to set all environment variables mentioned above with OpenMP programs.
 
+h3. OpenMP samples
+
+This step compiles and runs the OpenMP samples required:
+* omp_hello.c
+* omp_orphan.c
+* omp_workshare1.c
+* md_openmp.c
+* omp_mm.c
+* omp_reduction.c
+
+pre. 
+$ cd kalmar-omp-driver/omp-samples
+$ ./compile_exec.sh
+
+You should be able to see all samples compiled and executed without error message.
 
