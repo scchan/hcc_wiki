@@ -134,7 +134,7 @@ Once you reach here, please refer to "Build libc++ and libc++abi" below to finis
 
 ### Build libc++ and libc++abi
 
-Steps here are inspired by [this stackoverflow post](http://stackoverflow.com/questions/25840088/how-to-build-libcxx-and-libcxxabi-by-clang-on-centos-7).
+Steps here are inspired by [this stackoverflow post](http://stackoverflow.com/questions/25840088/how-to-build-libcxx-and-libcxxabi-by-clang-on-centos-7), with some modifications to ensure they work on both Fedora and CentOS.
 
 - Get libc++ and build it
 
