@@ -55,25 +55,7 @@ In case you want to install HOF under another directory, please refer to "cmake 
 
 ## Compile and install other dependencies ##
 
-Make sure you have the following packages installed:
-
-* cmake
-* git
-* subversion
-* g++
-* libstdc++-4.8-dev
-* libdwarf-dev
-* libelf-dev
-* libtinfo-dev
-* libc6-dev-i386
-* gcc-multilib
-* llvm
-* llvm-dev
-* llvm-runtime
-* libc++1
-* libc++-dev
-* re2c
-* libncurses5-dev
+Please follow steps described at [main page](https://bitbucket.org/multicoreware/cppamp-driver-ng-35/wiki/Home).
 
 ***
 
