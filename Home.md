@@ -59,10 +59,13 @@ You can install all prerequisites with the command below:
 ```
 sudo apt-get install cmake git subversion g++ libstdc++-4.8-dev libdwarf-dev libelf-dev libtinfo-dev libc6-dev-i386 gcc-multilib llvm llvm-dev llvm-runtime libc++1 libc++abi1 libc++-dev re2c libncurses5-dev
 ```
+****
 
 ### CentOS ###
 
 hcc is currently dependent on libc++ and libc++abi. On CentOS, there are no libc++ binary packages, so they have to be built manually.
+
+In the near future, all dependencies to libc++ and libc++abi will be stripped so steps here would become simpler.
 
 To build hcc on CentOS, first install prerequisite packages via yum:
 
@@ -90,21 +93,95 @@ You can install these prerequisites with the command below:
 sudo yum install clang llvm-devel
 ```
 
-#### Build libc++ and libc++abi on CentOS ####
-
-
-
-
-### Fedora ###
-
-
-On Fedora or CentOS, as there are no libc++ binary packages, they have to be built manually.
-
+Once you reach here, please refer to [Build libc++ and libc++abi] below to finish building libc++ and libc++abi on CentOS.
 
 
 ****
 
-# Build from source
+
+### Fedora ###
+
+hcc is currently dependent on libc++ and libc++abi. On Fedora, there are no libc++ binary packages, so they have to be built manually.
+
+In the near future, all dependencies to libc++ and libc++abi will be stripped so steps here would become simpler.
+
+To build hcc on Fedora, first install prerequisite packages via yum:
+
+* cmake
+* git
+* svn
+* patch
+* gcc
+* gcc-c++
+* clang
+* llvm-devel
+
+You can install these prerequisites with the command below:
+
+```
+sudo yum install cmake git svn patch gcc gcc-c++ clang llvm-devel
+```
+
+Once you reach here, please refer to [Build libc++ and libc++abi] below to finish building libc++ and libc++abi on CentOS.
+
+****
+
+#### Build libc++ and libc++abi on Fedora/CentOS ####
+
+Steps here are inspired by [this stackoverflow post](http://stackoverflow.com/questions/25840088/how-to-build-libcxx-and-libcxxabi-by-clang-on-centos-7).
+
+- Get libc++ and build it
+
+```
+# Get libcxx.
+svn co http://llvm.org/svn/llvm-project/libcxx/trunk libcxx
+cd libcxx
+# It is not recommended to build libcxx in the source root directory.
+# So, we make a build directory.
+mkdir build
+cd build
+# Specifying CMAKE_BUILD_TYPE to Release shall generate performance optimized code.
+# Please specify the absolute paths to clang and clang++ to CMAKE_C_COMPILER and DCMAKE_CXX_COMPILER,
+# because CMake (ver. 2.8.12 - 3.0.x) has a bug ... See http://www.cmake.org/Bug/view.php?id=15156
+# The CMAKE_INSTALL_PREFIX changes the install path from the default /usr/local to /usr.
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ ..
+sudo make install
+cd ..
+
+```
+
+- Get libc++abi and build it
+
+```
+# Get libcxxabi.
+svn co http://llvm.org/svn/llvm-project/libcxxabi/trunk libcxxabi
+cd libcxxabi
+mkdir build
+cd build
+# Without -DCMAKE_CXX_FLAGS="-std=c++11", clang++ seems to use c++03, so libcxxabi which seems to be written in C++11 can't be compiled. It could be a CMakeLists.txt bug of libcxxabi.
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -DCMAKE_CXX_FLAGS="-std=c++11" -DLIBCXXABI_LIBCXX_INCLUDES=../../libcxx/include ..
+sudo make install
+cd ..
+```
+
+- Build libc++ again, this time with libc++abi support
+
+```
+cd libcxx
+mkdir build2
+cd build2
+# This time, we want to compile libcxx with libcxxabi, so we have to specify LIBCXX_CXX_ABI=libcxxabi and the path to libcxxabi headers, LIBCXX_CXX_ABI_INCLUDE_PATHS.
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -DLIBCXX_CXX_ABI=libcxxabi -DLIBCXX_CXX_ABI_INCLUDE_PATHS=../../libcxxabi/include ..
+sudo make install
+cd ..
+```
+
+By now libc++ and libc++abi should be built and installed on your Fedora/CentOS installation. You are able to continue [Build hcc from source] now.
+
+
+****
+
+# Build hcc from source
 
 Please use the following instructions to build from source as of now:
 
