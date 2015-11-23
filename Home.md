@@ -62,6 +62,9 @@ You can install all prerequisites with the command below:
 ```
 sudo apt-get install cmake git subversion g++ libstdc++-4.8-dev libdwarf-dev libelf-dev libtinfo-dev libc6-dev-i386 gcc-multilib llvm llvm-dev llvm-runtime libc++1 libc++abi1 libc++-dev re2c libncurses5-dev
 ```
+
+You are able to continue build hcc from source, or use pre-built binary packages now.
+
 ****
 
 ### CentOS
