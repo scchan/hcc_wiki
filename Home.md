@@ -21,6 +21,9 @@ Tested targets are:
     * [Apple Mac OS X 10.9 Stack](InstallOnMacOSX) with OpenCL C
 * [HSAIL and BRIG](HSA Support Status) for HSA devices:
     * AMD Kaveri APU
+    * AMD Fiji dGPU
+* AMD GCN (TO BE SUPPLIED)
+    * AMD Fiji dGPU
 
 ****
 
@@ -32,7 +35,7 @@ Tested targets are:
 
 ## Compile and install dependencies ##
 
-### Ubuntu ###
+### Ubuntu
 
 On Ubuntu, make sure you have the following packages installed:
 
@@ -61,7 +64,7 @@ sudo apt-get install cmake git subversion g++ libstdc++-4.8-dev libdwarf-dev lib
 ```
 ****
 
-### CentOS ###
+### CentOS
 
 hcc is currently dependent on libc++ and libc++abi. On CentOS, there are no libc++ binary packages, so they have to be built manually.
 
@@ -93,13 +96,13 @@ You can install these prerequisites with the command below:
 sudo yum install clang llvm-devel
 ```
 
-Once you reach here, please refer to [Build libc++ and libc++abi] below to finish building libc++ and libc++abi on CentOS.
+Once you reach here, please refer to [Build libc++ and libc++abi](#buildlibcxx) below to finish building libc++ and libc++abi on CentOS.
 
 
 ****
 
 
-### Fedora ###
+### Fedora
 
 hcc is currently dependent on libc++ and libc++abi. On Fedora, there are no libc++ binary packages, so they have to be built manually.
 
@@ -122,11 +125,11 @@ You can install these prerequisites with the command below:
 sudo yum install cmake git svn patch gcc gcc-c++ clang llvm-devel
 ```
 
-Once you reach here, please refer to [Build libc++ and libc++abi] below to finish building libc++ and libc++abi on CentOS.
+Once you reach here, please refer to [Build libc++ and libc++abi](#buildlibcxx) below to finish building libc++ and libc++abi on Fedora.
 
 ****
 
-#### Build libc++ and libc++abi on Fedora/CentOS ####
+### <a name="buildlibcxx"></a>Build libc++ and libc++abi on Fedora/CentOS
 
 Steps here are inspired by [this stackoverflow post](http://stackoverflow.com/questions/25840088/how-to-build-libcxx-and-libcxxabi-by-clang-on-centos-7).
 
