@@ -191,6 +191,8 @@ By now libc++ and libc++abi should be built and installed on your Fedora/CentOS 
 Please use the following instructions to build from source as of now:
 
 ```
+mkdir hcc
+cd hcc
 git clone https://bitbucket.org/multicoreware/cppamp-driver-ng-35.git src
 mkdir build
 cd build
