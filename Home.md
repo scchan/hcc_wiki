@@ -179,7 +179,7 @@ sudo make install
 cd ..
 ```
 
-By now libc++ and libc++abi should be built and installed on your Fedora/CentOS installation. You are able to continue [Build hcc from source] now.
+By now libc++ and libc++abi should be built and installed on your Fedora/CentOS installation. You are able to continue build hcc from source now.
 
 
 ****
