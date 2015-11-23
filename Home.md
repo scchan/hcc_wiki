@@ -96,7 +96,7 @@ You can install these prerequisites with the command below:
 sudo yum install clang llvm-devel
 ```
 
-Once you reach here, please refer to [Build libc++ and libc++abi](#buildlibcxx) below to finish building libc++ and libc++abi on CentOS.
+Once you reach here, please refer to "Build libc++ and libc++abi" below to finish building libc++ and libc++abi on CentOS.
 
 
 ****
@@ -125,11 +125,11 @@ You can install these prerequisites with the command below:
 sudo yum install cmake git svn patch gcc gcc-c++ clang llvm-devel
 ```
 
-Once you reach here, please refer to [Build libc++ and libc++abi](#buildlibcxx) below to finish building libc++ and libc++abi on Fedora.
+Once you reach here, please refer to "Build libc++ and libc++abi" below to finish building libc++ and libc++abi on Fedora.
 
 ****
 
-### <a name="buildlibcxx"></a>Build libc++ and libc++abi on Fedora/CentOS
+### Build libc++ and libc++abi
 
 Steps here are inspired by [this stackoverflow post](http://stackoverflow.com/questions/25840088/how-to-build-libcxx-and-libcxxabi-by-clang-on-centos-7).
 
