@@ -48,6 +48,7 @@ Make sure you have the following packages installed:
 * llvm-dev
 * llvm-runtime
 * libc++1
+* libc++abi1
 * libc++-dev
 * re2c
 * libncurses5-dev
