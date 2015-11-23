@@ -30,9 +30,11 @@ Tested targets are:
 
 ****
 
-## Compile and install other dependencies ##
+## Compile and install dependencies ##
 
-Make sure you have the following packages installed:
+### Ubuntu ###
+
+On Ubuntu, make sure you have the following packages installed:
 
 * cmake
 * git
@@ -52,6 +54,52 @@ Make sure you have the following packages installed:
 * libc++-dev
 * re2c
 * libncurses5-dev
+
+You can install all prerequisites with the command below:
+```
+sudo apt-get install cmake git subversion g++ libstdc++-4.8-dev libdwarf-dev libelf-dev libtinfo-dev libc6-dev-i386 gcc-multilib llvm llvm-dev llvm-runtime libc++1 libc++abi1 libc++-dev re2c libncurses5-dev
+```
+
+### CentOS ###
+
+hcc is currently dependent on libc++ and libc++abi. On CentOS, there are no libc++ binary packages, so they have to be built manually.
+
+To build hcc on CentOS, first install prerequisite packages via yum:
+
+* cmake
+* git
+* svn
+* patch
+* gcc
+* gcc-c++
+* epel-release
+
+You can install these prerequisites with the command below:
+
+```
+sudo yum install cmake git svn patch gcc gcc-c++ epel-release
+```
+
+After epel-release is installed, install other dependent packages:
+
+* clang
+* llvm-devel
+
+You can install these prerequisites with the command below:
+```
+sudo yum install clang llvm-devel
+```
+
+#### Build libc++ and libc++abi on CentOS ####
+
+
+
+
+### Fedora ###
+
+
+On Fedora or CentOS, as there are no libc++ binary packages, they have to be built manually.
+
 
 
 ****
