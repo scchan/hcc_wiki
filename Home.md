@@ -195,9 +195,24 @@ Please use the following instructions to build from source as of now:
 git clone https://bitbucket.org/multicoreware/cppamp-driver-ng-35.git src
 mkdir build
 cd build
+# hcc will be installed to /opt/hcc by default
+# change it by running cmake -DCMAKE_INSTALL_PREFIX=<path you want to install hcc>
 cmake ../src
 make -j4 world
 make -j4
+```
+
+Once the build is completed, install it and set necessary environmental variables:
+
+```
+# hcc will be installed to /opt/hcc by default
+sudo make install
+
+# set HCC_HOME environment
+export HCC_HOME=/opt/hcc
+
+# set PATH
+export PATH=$HCC_HOME/bin:$PATH
 ```
 
 ****
