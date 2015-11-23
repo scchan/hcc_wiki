@@ -152,8 +152,7 @@ cd build
 # The CMAKE_INSTALL_PREFIX changes the install path from the default /usr/local to /usr.
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ ..
 sudo make install
-cd ..
-
+cd ../..
 ```
 
 - Get libc++abi and build it
@@ -167,7 +166,7 @@ cd build
 # Without -DCMAKE_CXX_FLAGS="-std=c++11", clang++ seems to use c++03, so libcxxabi which seems to be written in C++11 can't be compiled. It could be a CMakeLists.txt bug of libcxxabi.
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -DCMAKE_CXX_FLAGS="-std=c++11" -DLIBCXXABI_LIBCXX_INCLUDES=../../libcxx/include ..
 sudo make install
-cd ..
+cd ../..
 ```
 
 - Build libc++ again, this time with libc++abi support
@@ -179,7 +178,7 @@ cd build2
 # This time, we want to compile libcxx with libcxxabi, so we have to specify LIBCXX_CXX_ABI=libcxxabi and the path to libcxxabi headers, LIBCXX_CXX_ABI_INCLUDE_PATHS.
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -DLIBCXX_CXX_ABI=libcxxabi -DLIBCXX_CXX_ABI_INCLUDE_PATHS=../../libcxxabi/include ..
 sudo make install
-cd ..
+cd ../..
 ```
 
 By now libc++ and libc++abi should be built and installed on your Fedora/CentOS installation. You are able to continue build hcc from source now.
