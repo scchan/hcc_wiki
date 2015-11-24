@@ -122,11 +122,12 @@ To build hcc on Fedora, first install prerequisite packages via yum:
 * gcc-c++
 * clang
 * llvm-devel
+* re2c
 
 You can install these prerequisites with the command below:
 
 ```
-sudo yum install cmake git svn patch gcc gcc-c++ clang llvm-devel
+sudo yum install cmake git svn patch gcc gcc-c++ clang llvm-devel re2c
 ```
 
 Once you reach here, please refer to "Build libc++ and libc++abi" below to finish building libc++ and libc++abi on Fedora.
