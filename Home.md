@@ -63,6 +63,11 @@ You can install all prerequisites with the command below:
 sudo apt-get install cmake git subversion g++ libstdc++-4.8-dev libdwarf-dev libelf-dev libtinfo-dev libc6-dev-i386 gcc-multilib llvm llvm-dev llvm-runtime libc++1 libc++abi1 libc++-dev re2c libncurses5-dev
 ```
 
+For some unknown reason symbolic links to libc++abi1 might not be set automatically on some Ubuntu installations. It can be fixed by manually creating the symbolic link:
+```
+sudo ln -s /usr/lib/x86_64-linux-gnu/libc++abi.so.1.0 /usr/lib/x86_64-linux-gnu/libc++abi.so
+```
+
 You are able to continue build hcc from source, or use pre-built binary packages now.
 
 ****
