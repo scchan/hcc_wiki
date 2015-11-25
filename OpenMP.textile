@@ -17,7 +17,7 @@ $ cd ..
 $ mkdir b-kalmar-omp-driver/
 $ cd b-kalmar-omp-driver/
 $ cmake \
-  -DCLANG_URL=https://bitbucket.org/lyh-kernel/kalmar-omp.git \
+  -DCLANG_URL=https://bitbucket.org/multicoreware/kalmar-omp.git \
   ../kalmar-omp-driver/
 
 *Note: You would be prompted your Bitbucket ID/Password during CMake configuration for access to kalmar-omp (the actual compiler) repository.* Please contact Yi-Hong Lyu <yi-hong@multicorewareinc.com> to obtain access to the repository.
