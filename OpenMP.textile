@@ -33,7 +33,8 @@ pre.
 $ cd ../kalmar-omp-driver/compiler/tools/clang
 $ git checkout -b kalmar-omp origin/kalmar-omp
 $ cd -
-$ make -j4 world && make -j4
+$ make -j4 world 
+$ make -j4
 $ export PATH=$HOME/clang-omp/b-kalmar-omp-driver/compiler/bin:$PATH
 
 h3. OpenMP runtime
