@@ -9,7 +9,7 @@ The deliverables include two parts:
 h3. HCC-OpenMP Compiler
 
 pre. 
-git clone https://bitbucket.org/multicoreware/cppamp-driver-ng-35.git src
+git clone https://bitbucket.org/multicoreware/hcc.git src
 mkdir build
 cd build
 cmake \
