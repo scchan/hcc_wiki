@@ -1,45 +1,29 @@
-The instructions below assume you are in _$HOME/clang-omp_. The compiler would be built under _$HOME/clang-omp/b-kalmar-omp-driver_. The OpenMP runtime would be put under _$HOME/clang-omp/openmp_.
+The instructions below assume you are in _$HOME/hcc-omp_. The compiler would be built under _$HOME/hcc-omp/build_. The OpenMP runtime would be put under _$HOME/hcc-omp/openmp_.
 
-h2. Build the Kalmar-OMP and OpenMP runtime
+h2. Build HCC and OpenMP runtime
 
 The deliverables include two parts:
-* Kalmar-OMP: OpenMP-enabled Kalmar
+* HCC-OpenMP: OpenMP-enabled HCC
 * OpenMP runtime
 
-h3. Kalmar-OMP Compiler
+h3. HCC-OpenMP Compiler
 
 pre. 
-$ git clone https://bitbucket.org/lyh-kernel/kalmar-omp-driver.git \
-kalmar-omp-driver
-$ cd kalmar-omp-driver/
-$ git checkout -b kalmar-omp origin/kalmar-omp
-$ cd ..
-$ mkdir b-kalmar-omp-driver/
-$ cd b-kalmar-omp-driver/
-$ cmake \
+git clone https://bitbucket.org/multicoreware/cppamp-driver-ng-35.git src
+mkdir build
+cd build
+cmake \
   -DCLANG_URL=https://bitbucket.org/multicoreware/kalmar-omp.git \
-  ../kalmar-omp-driver/
-
-*Note: You would be prompted your Bitbucket ID/Password during CMake configuration for access to kalmar-omp (the actual compiler) repository.* Please contact Yi-Hong Lyu <yi-hong@multicorewareinc.com> to obtain access to the repository.
-
-Alternatively, once you obtained access, use the SSH key method instead of the last cmake step:
-
-pre. 
-cmake -DCLANG_URL=git@bitbucket.org:lyh-kernel/kalmar-omp.git ../kalmar-omp-driver/
-
-The rest of the steps are:
-
-pre. 
-$ cd ../kalmar-omp-driver/compiler/tools/clang
-$ git checkout -b kalmar-omp origin/kalmar-omp
-$ cd -
-$ make -j4 world 
-$ make -j4
-$ export PATH=$HOME/clang-omp/b-kalmar-omp-driver/compiler/bin:$PATH
+  ../src
+make -j4 world 
+make -j4
+sudo make install
+export HCC_HOME=/opt/hcc
+export PATH=$HCC_HOME/bin:$PATH
 
 h3. OpenMP runtime
 
-The instructions below assume you are in _$HOME/clang-omp_.  The build assumes x86-64 architecture.
+The instructions below assume you are in _$HOME/hcc-omp_.  The build assumes x86-64 architecture.
 
 pre. 
 $ svn co http://llvm.org/svn/llvm-project/openmp/trunk openmp
@@ -47,14 +31,14 @@ $ cd openmp
 $ svn up -r238878
 $ cd runtime
 $ make compiler=clang arch=x86_64
-$ export C_INCLUDE_PATH=$HOME/clang-omp/openmp/runtime/exports/common/include:$C_INCLUDE_PATH
-$ export CPLUS_INCLUDE_PATH=$HOME/clang-omp/openmp/runtime/exports/common/include:$CPLUS_INCLUDE_PATH
-$ export LIBRARY_PATH=$HOME/clang-omp/openmp/runtime/exports/lin_32e/lib:$LIBRARY_PATH
-$ export LD_LIBRARY_PATH=$HOME/clang-omp/openmp/runtime/exports/lin_32e/lib:$LD_LIBRARY_PATH
+$ export C_INCLUDE_PATH=$HOME/hcc-omp/openmp/runtime/exports/common/include:$C_INCLUDE_PATH
+$ export CPLUS_INCLUDE_PATH=$HOME/hcc-omp/openmp/runtime/exports/common/include:$CPLUS_INCLUDE_PATH
+$ export LIBRARY_PATH=$HOME/hcc-omp/openmp/runtime/exports/lin_32e/lib:$LIBRARY_PATH
+$ export LD_LIBRARY_PATH=$HOME/hcc-omp/openmp/runtime/exports/lin_32e/lib:$LD_LIBRARY_PATH
 
 h2. Running benchmarks
 
-*Note: You need to set all environment variables mentioned above with Kalmar-OMP Compiler and OpenMP runtime.*
+*Note: You need to set all environment variables mentioned above with HCC-OpenMP Compiler and OpenMP runtime.*
 
 h3. OpenMP samples
 
@@ -67,7 +51,7 @@ This step compiles and runs the OpenMP samples required:
 * omp_reduction.c
 
 pre. 
-$ cd kalmar-omp-driver/omp-samples
+$ cd src/omp-sample
 $ ./compile_exec.sh
 
 You should be able to see all samples compiled and executed without error message.
@@ -75,7 +59,7 @@ You should be able to see all samples compiled and executed without error messag
 h3. OpenMP3.1_Validation (OpenUH OpenMP test suite)
 
 pre. 
-$ cd kalmar-omp-driver/OpenMP3.1_Validation
+$ cd src/OpenMP3.1_Validation
 $ make clean
 $ make ctest
 
