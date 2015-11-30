@@ -1,12 +1,12 @@
-The instructions below assume you are in _$HOME/hcc-omp_. The compiler would be built under _$HOME/hcc-omp/build_. The OpenMP runtime would be put under _$HOME/hcc-omp/openmp_.
+The instructions below assume you are in _$HOME/hcc_. The compiler would be built under _$HOME/hcc/build_. The OpenMP runtime would be put under _$HOME/hcc/openmp_.
 
 h2. Build HCC and OpenMP runtime
 
 The deliverables include two parts:
-* HCC-OpenMP: OpenMP-enabled HCC
+* HCC: HCC compiler
 * OpenMP runtime
 
-h3. HCC-OpenMP Compiler
+h3. HCC Compiler
 
 pre. 
 git clone https://bitbucket.org/multicoreware/hcc.git src
@@ -23,7 +23,7 @@ export PATH=$HCC_HOME/bin:$PATH
 
 h3. OpenMP runtime
 
-The instructions below assume you are in _$HOME/hcc-omp_.  The build assumes x86-64 architecture.
+The instructions below assume you are in _$HOME/hcc_.  The build assumes x86-64 architecture.
 
 pre. 
 svn co http://llvm.org/svn/llvm-project/openmp/trunk openmp
@@ -31,10 +31,10 @@ cd openmp
 svn up -r238878
 cd runtime
 make compiler=clang arch=x86_64
-export C_INCLUDE_PATH=$HOME/hcc-omp/openmp/runtime/exports/common/include:$C_INCLUDE_PATH
-export CPLUS_INCLUDE_PATH=$HOME/hcc-omp/openmp/runtime/exports/common/include:$CPLUS_INCLUDE_PATH
-export LIBRARY_PATH=$HOME/hcc-omp/openmp/runtime/exports/lin_32e/lib:$LIBRARY_PATH
-export LD_LIBRARY_PATH=$HOME/hcc-omp/openmp/runtime/exports/lin_32e/lib:$LD_LIBRARY_PATH
+export C_INCLUDE_PATH=$HOME/hcc/openmp/runtime/exports/common/include:$C_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH=$HOME/hcc/openmp/runtime/exports/common/include:$CPLUS_INCLUDE_PATH
+export LIBRARY_PATH=$HOME/hcc/openmp/runtime/exports/lin_32e/lib:$LIBRARY_PATH
+export LD_LIBRARY_PATH=$HOME/hcc/openmp/runtime/exports/lin_32e/lib:$LD_LIBRARY_PATH
 
 h2. Running benchmarks
 
