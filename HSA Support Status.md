@@ -55,7 +55,7 @@ In case you want to install HOF under another directory, please refer to "cmake 
 
 ## Compile and install other dependencies ##
 
-Please follow steps described at [main page](https://bitbucket.org/multicoreware/cppamp-driver-ng-35/wiki/Home).
+Please follow steps described at [main page](https://bitbucket.org/multicoreware/hcc/wiki/Home).
 
 ***
 
@@ -66,7 +66,7 @@ Please follow steps described at [main page](https://bitbucket.org/multicoreware
 ```
 mkdir kalmar
 cd kalmar
-git clone https://bitbucket.org/multicoreware/cppamp-driver-ng-35.git src
+git clone https://bitbucket.org/multicoreware/hcc.git src
 
 mkdir build
 cd build
