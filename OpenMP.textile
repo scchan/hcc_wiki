@@ -13,7 +13,7 @@ git clone https://bitbucket.org/multicoreware/cppamp-driver-ng-35.git src
 mkdir build
 cd build
 cmake \
-  -DCLANG_URL=https://bitbucket.org/multicoreware/kalmar-omp.git \
+  -DCLANG_URL=https://bitbucket.org/multicoreware/hcc-clang.git \
   ../src
 make -j4 world 
 make -j4
