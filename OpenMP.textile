@@ -2,7 +2,8 @@ The instructions below assume you are in _$HOME/hcc_. The compiler would be buil
 
 h2. Build HCC and OpenMP runtime
 
-The deliverables include two parts:
+HCC now comes with OpenMP support by default. But to run OpenMP programs, you'll need to build OpenMP runtime separately.
+
 * HCC: HCC compiler
 * OpenMP runtime
 
@@ -12,9 +13,7 @@ pre.
 git clone https://bitbucket.org/multicoreware/hcc.git src
 mkdir build
 cd build
-cmake \
-  -DCLANG_URL=https://bitbucket.org/multicoreware/hcc-clang.git \
-  ../src
+cmake ../src
 make -j4 world 
 make -j4
 sudo make install
