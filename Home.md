@@ -196,7 +196,7 @@ Please use the following instructions to build from source as of now:
 ```
 mkdir hcc
 cd hcc
-git clone https://bitbucket.org/multicoreware/cppamp-driver-ng-35.git src
+git clone https://bitbucket.org/multicoreware/hcc.git src
 mkdir build
 cd build
 # hcc will be installed to /opt/hcc by default
