@@ -286,7 +286,7 @@ Always remember to use: sudo ldconfig -v to reload ld.so cache.
 
 See [HSA Support Status](HSA Support Status)
 
-## Install on Mac OS X (Experimental) ##
+## Install on Mac OS X (Currently Obsolete) ##
 
 See [InstallOnMacOSX](InstallOnMacOSX)
 
@@ -336,14 +336,16 @@ clang++ --version
 
 Example output would be:
 ```
-HCC clang version 3.5.0 (tags/RELEASE_350/final) (based on HCC 0.6.0-8769a29-c54a03c LLVM 3.5.0svn)
+HCC clang version 3.5.0 (tags/RELEASE_350/final) (based on HCC 0.8.1549-ea9df54-27d8ed2-183de0b LLVM 3.5.0svn)
 Target: x86_64-unknown-linux-gnu
 Thread model: posix
 
 - 3.5.0 is the version of clang
-- 0.6.0 is the package version of HCC
-- 8769a29 is the git commit # of HCC driver
-- c54a03c is the git commit # of HCC compiler
+- 0.8.1549 is the package version of HCC
+- 1549 means the package is built on Week 49 of Year 2015
+- ea9df54 is the git commit # of HCC driver
+- 27d8ed2 is the git commit # of HCC compiler
+- 183de0b is the git commit # of HLC HSAIL backend used by HCC
 ```
 
 ****
@@ -386,32 +388,32 @@ There are a few more details about the values ```__KALMAR_ACCELERATOR__``` and `
 
 ****
 
-# Choose C++AMP runtime #
+# Choose HCC runtime #
 
-C++AMP programs will automatically detect available GPU platform on the system, with the following precendence:
+HCC programs will automatically detect available GPU platform on the system, with the following precendence:
 
 - HSA
 - OpenCL
 - CPU
 
-In case you want to force C++AMP runtime to use a certain runtime, you can use:
+In case you want to force HCC runtime to use a certain runtime, you can use:
 ```
-# force set C++AMP runtime to HSA
-export CLAMP_RUNTIME=HSA
+# force set HCC runtime to HSA
+export HCC_RUNTIME=HSA
 
-# force set C++AMP runtime to OpenCL
-export CLAMP_RUNTIME=CL
+# force set HCC runtime to OpenCL
+export HCC_RUNTIME=CL
 
-# force set C++AMP runtime to CPU
-export CLAMP_RUNTIME=CPU
+# force set HCC runtime to CPU
+export HCC_RUNTIME=CPU
 ```
 
 To turn auto detection back on:
 ```
-unset CLAMP_RUNTIME
+unset HCC_RUNTIME
 ```
 
-Please notice if C++AMP runtime find the specified runtime couldn't be loaded it would fall back to automatic detection.
+Please notice if HCC runtime find the specified runtime couldn't be loaded it would fall back to automatic detection.
 
 ****
 
@@ -424,11 +426,11 @@ On OpenCL machines with SPIR support, SPIR kernels will be used instead of OpenC
 export CLAMP_NOSPIR=1
 ```
 
-It will force C++AMP runtime to pick OpenCL C instead of SPIR.  To turn it back on:
+It will force HCC runtime to pick OpenCL C instead of SPIR.  To turn it back on:
 
 ```
 # turn on SPIR
-unset CLAMP_NOSPIR
+unset HCC_NOSPIR
 ```
 
 The environment variable CLAMP_NOSPIR has no effect on devices without SPIR support.
@@ -634,4 +636,4 @@ See [here](Roadmap)
 
 # More about this project and build instruction
 
-See [the Overview](https://bitbucket.org/multicoreware/cppamp-driver-ng/overview)
+See [the Overview](https://bitbucket.org/multicoreware/hcc/overview)
