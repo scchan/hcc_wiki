@@ -223,19 +223,11 @@ export PATH=$HCC_HOME/bin:$PATH
 
 # Downloads
 
-In the latest release (0.7.0), OpenCL and HSA are unified into one single release package.
-
 ### Download links for Ubuntu x86-64 packages ###
-- [clamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/kalmar-0.6.0-f69d9d4-02e68c9-Linux.deb)
-- [libcxxamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/libcxxamp-0.6.0-f69d-Linux.deb)
-- (optional) [clamp-bolt](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/clamp-bolt-1.2.0-hsa-milestone4-Linux.deb)
-- (optional) [boost](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/boost_1_55_0-hsa-milestone3.tar.gz)
+- [hcc](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/hcc-0.8.1549-ea9df54-27d8ed2-183de0b-Linux.deb)
 
 ### Download links for Ubuntu x86-64 tarballs ###
-- [clamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/kalmar-0.6.0-f69d9d4-02e68c9-Linux.tar.gz)
-- [libcxxamp](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/libcxxamp-0.6.0-f69d-Linux.tar.gz)
-- (optional) [clamp-bolt](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/clamp-bolt-1.2.0-hsa-milestone4-Linux.tar.gz)
-- (optional) [boost](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/boost_1_55_0-hsa-milestone3.tar.gz)
+- [hcc](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/hcc-0.8.1549-ea9df54-27d8ed2-183de0b-Linux.tar.gz)
 
 See also [Downloads](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads) for older versions
 
@@ -245,24 +237,23 @@ See also [Downloads](https://bitbucket.org/multicoreware/cppamp-driver-ng/downlo
 
 ## Ubuntu binary packages for x86-64 ##
 
-To install, download clamp and libcxxamp DEB files from links above, and:
+To install, download hcc DEB files from links above, and:
 
 ```
-sudo dpkg -i libcxxamp-<version>-Linux.deb kalmar-<version>-Linux.deb
+sudo dpkg -i hcc-<version>-Linux.deb
 ```
 
-Default installation directory is /opt/kalmar.
+Default installation directory is /opt/hcc.
 
 ## Binary tarballs for x86-64 ##
 
-To install, download kalmar and libcxxamp tar.gz files from links above, and:
+To install, download hcc tar.gz files from links above, and:
 
 ```
-sudo tar zxvf libcxxamp-<version>-Linux.tar.gz
-sudo tar zxvf kalmar-<version>-Linux.tar.gz
+sudo tar zxvf hcc-<version>-Linux.tar.gz
 ```
 
-Default installation directory is /opt/kalmar.
+Default installation directory is /opt/hcc.
 
 ## Dynamic Libraries ##
 
@@ -270,14 +261,13 @@ Since 0.4.0 platform-specific libraries and libc++ are built as dynamic librarie
 
 If you install deb files or tarballs, please add the following lines to /etc/ld.so.conf :
 ```
-# C++AMP runtime libraries
-# libc++ & C++AMP runtime implementations
-/opt/kalmar/lib
+# HCC runtime libraries
+/opt/hcc/lib
 ```
 
 If you build from source, please add the following lines to /etc/ld.so.conf:
 ```
-# C++AMP runtime implementations
+# HCC runtime implementations
 (path_of_your_build_directory)/build/Release/lib
 ```
 
@@ -292,13 +282,14 @@ Please make sure OpenCL or HSA runtime libraries can be located by ld.so as well
 
 Always remember to use: sudo ldconfig -v to reload ld.so cache.
 
+## Install on AMD Kaveri HSA ##
+
+See [HSA Support Status](HSA Support Status)
+
 ## Install on Mac OS X (Experimental) ##
 
 See [InstallOnMacOSX](InstallOnMacOSX)
 
-## Install on AMD Kaveri HSA (Experimental) ##
-
-See [HSA Support Status](HSA Support Status)
 
 ****
 
@@ -307,7 +298,7 @@ See [HSA Support Status](HSA Support Status)
 A new clang driver has been merged in the latest release to have a streamlined build process.  Here's an example to build (compile + link) in 1-step:
 
 ```
-# Assume HCC and libcxxamp are installed and added to PATH
+# Assume HCC is installed and added to PATH
 # use --install if you install HCC with ubuntu package
 # use --build if you build from source
 # if not specified, default would be --install
