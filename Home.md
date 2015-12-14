@@ -206,6 +206,23 @@ make -j4 world
 make -j4
 ```
 
+To build HCC in debug mode, please execute the following steps:
+
+```
+mkdir hcc
+cd hcc
+git clone https://bitbucket.org/multicoreware/hcc.git src
+mkdir build
+cd build
+# hcc will be installed to /opt/hcc by default
+# change it by running cmake -DCMAKE_INSTALL_PREFIX=<path you want to install hcc>
+cmake -DCMAKE_BUILD_TYPE=Debug ../src
+make -j1 world
+make -j1
+```
+
+Please notice debug build would require larger memory so make -j4 make fail, even on a 8GB machine. So with debug build the command has been changed to make -j1.
+
 Once the build is completed, install it and set necessary environmental variables:
 
 ```
