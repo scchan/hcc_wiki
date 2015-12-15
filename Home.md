@@ -1,6 +1,13 @@
 # HCC : An open source C++ compiler for heterogeneous devices #
 
-The HCC project is managed and primarily developed by [MulticoreWare](http://www.multicorewareinc.com/), a leading developer of heterogeneous software development platforms, tools and applications.  
+This repository hosts HCC, a C++ compiler implementation project. The goal is to implement a compiler frontend which supports the following parallel programming paradigms:
+
+* C++AMP 1.2
+* [HC](HC mode), an HSA-specific extension to C++AMP 1.2.
+* C++17 parallel STL
+* [OpenMP 3.1/4.0](OpenMP)
+
+and transforms it into HSAIL, SPIR binary, or OpenCL-C.
 
 ****
 
