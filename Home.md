@@ -5,10 +5,10 @@ The HCC project is managed and primarily developed by [MulticoreWare](http://www
 
 # Download HCC #
 
-## Download links for Ubuntu x86-64 packages ##
+### Download links for Ubuntu x86-64 packages ###
 - [hcc](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/hcc-0.8.1549-ea9df54-27d8ed2-183de0b-Linux.deb)
 
-## Download links for Ubuntu x86-64 tarballs ##
+### Download links for Ubuntu x86-64 tarballs ###
 - [hcc](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/hcc-0.8.1549-ea9df54-27d8ed2-183de0b-Linux.tar.gz)
 
 ****
