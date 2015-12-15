@@ -92,4 +92,4 @@ hcc `hcc-config --cxxflags --ldflags` foo.cpp -o foo.out
 
 # More information #
 
-Please visit [Old Home] for more detailed information.
+Please visit [Old Home](Old Home) for more detailed information.
