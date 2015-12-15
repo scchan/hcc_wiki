@@ -87,3 +87,9 @@ hcc `hcc-config --cxxflags --ldflags` foo.cpp -o foo.out
 # API documentation #
 
 [API reference of HCC](http://whchung.bitbucket.org)
+
+****
+
+# More information #
+
+Please visit [Old Home] for more detailed information.
