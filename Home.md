@@ -7,11 +7,9 @@ The HCC project is managed and primarily developed by [MulticoreWare](http://www
 
 ## Download HCC ##
 
-### Download links for Ubuntu x86-64 packages ###
-- [hcc](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/hcc-0.8.1549-ea9df54-27d8ed2-183de0b-Linux.deb)
+- [hcc Ubuntu x86-64 package](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/hcc-0.8.1549-ea9df54-27d8ed2-183de0b-Linux.deb)
 
-### Download links for Ubuntu x86-64 tarballs ###
-- [hcc](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/hcc-0.8.1549-ea9df54-27d8ed2-183de0b-Linux.tar.gz)
+- [hcc Ubuntu x86-64 tarball](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/hcc-0.8.1549-ea9df54-27d8ed2-183de0b-Linux.tar.gz)
 
 ## Install dependencies ##
 
@@ -59,7 +57,7 @@ Always remember to use: sudo ldconfig -v to reload ld.so cache.
 
 ****
 
-# How to compile a C++AMP program #
+# How to use HCC #
 
 Here's an example to build (compile + link) in 1-step:
 
@@ -77,6 +75,6 @@ hcc `hcc-config --cxxflags --ldflags` foo.cpp -o foo.out
 
 ****
 
-# API documentation
+# API documentation #
 
 [API reference of HCC](http://whchung.bitbucket.org)
