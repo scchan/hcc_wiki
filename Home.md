@@ -1,4 +1,5 @@
 # HCC : An open source C++ compiler for heterogeneous devices #
+
 The HCC project is managed and primarily developed by [MulticoreWare](http://www.multicorewareinc.com/), a leading developer of heterogeneous software development platforms, tools and applications.  
 
 ****
@@ -20,23 +21,31 @@ sudo apt-get install cmake git subversion g++ libstdc++-4.8-dev libdwarf-dev lib
 
 ## Install HCC ##
 
-To install, download hcc DEB files from links above, and then:
+By default, HCC would be installed to /opt/hcc.
+
+To install HCC, download hcc DEB files from links above, and then:
 ```
 sudo dpkg -i hcc-<version>-Linux.deb
 ```
-Default installation directory is /opt/hcc.
 
-You can also choose to download hcc tar.gz files from links above, and:
+You can also choose to download hcc tar.gz files from links above, and then:
 
 ```
 sudo tar zxvf hcc-<version>-Linux.tar.gz
 ```
 
-Default installation directory is also /opt/hcc.
+## Setting up environment variables ##
 
-## Dynamic Libraries ##
+Use the following command to set up environment variables needed for HCC and add it into PATH:
 
-Platform-specific libraries are built as dynamic libraries.  Please change /etc/ld.so.conf to let dynamic libraries be locatable at runtime.
+```
+export HCC_HOME=/opt/hcc
+export PATH=$HCC_HOME/bin:$PATH
+```
+
+## Setting up runtime libraries ##
+
+HCC platform-specific runtimes are built as dynamic libraries.  Please change /etc/ld.so.conf to let dynamic libraries be locatable at runtime.
 
 If you install deb files or tarballs, please add the following lines to /etc/ld.so.conf :
 ```
