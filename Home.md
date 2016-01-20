@@ -15,7 +15,7 @@ and transforms it into HSAIL, SPIR binary, or OpenCL-C.
 
 ## Download HCC ##
 
-- [hcc downloads](https://bitbucket.org/multicoreware/hcc/downloads)
+- [hcc binary packages](https://bitbucket.org/multicoreware/hcc/downloads) : Ubuntu x86-64 debian package, or .tar.gz tarballs are available.
 
 ## Install dependencies ##
 
