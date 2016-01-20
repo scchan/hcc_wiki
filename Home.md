@@ -15,9 +15,7 @@ and transforms it into HSAIL, SPIR binary, or OpenCL-C.
 
 ## Download HCC ##
 
-- [hcc Ubuntu x86-64 package](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/hcc-0.8.1549-ea9df54-27d8ed2-183de0b-Linux.deb)
-
-- [hcc Ubuntu x86-64 tarball](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/hcc-0.8.1549-ea9df54-27d8ed2-183de0b-Linux.tar.gz)
+- [hcc downloads](https://bitbucket.org/multicoreware/hcc/downloads)
 
 ## Install dependencies ##
 
