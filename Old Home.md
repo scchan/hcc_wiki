@@ -236,17 +236,17 @@ export HCC_HOME=/opt/hcc
 export PATH=$HCC_HOME/bin:$PATH
 ```
 
+If you want to build Ubuntu debian or tar.gz archive for redistribution, please invoke:
+
+```
+make package
+```
+
 ****
 
 # Downloads
 
-### Download links for Ubuntu x86-64 packages ###
-- [hcc](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/hcc-0.8.1549-ea9df54-27d8ed2-183de0b-Linux.deb)
-
-### Download links for Ubuntu x86-64 tarballs ###
-- [hcc](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads/hcc-0.8.1549-ea9df54-27d8ed2-183de0b-Linux.tar.gz)
-
-See also [Downloads](https://bitbucket.org/multicoreware/cppamp-driver-ng/downloads) for older versions
+- [hcc](https://bitbucket.org/multicoreware/hcc/downloads/)
 
 ****
 
