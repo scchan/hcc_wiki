@@ -98,4 +98,4 @@ Please notice HC is only available on HSA hardware at this moment. It doesn't su
 
 # More information #
 
-Please visit [Old Home](Old Home) for more detailed information.
+Please visit [Developer Information](Developer Information) for more detailed information.
