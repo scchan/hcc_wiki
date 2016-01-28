@@ -86,7 +86,7 @@ To use HC mode:
 # Assume HCC is installed and added to PATH
 hcc `hcc-config --cxxflags --ldflags` foo.cpp -o foo.out
 ```
-**Please notice HC is only available on HSA hardware at this moment. It doesn't support OpenCL.**
+**Please notice HC is only available on HSA hardware at this moment. It doesn't support OpenCL. Only C++ AMP mode is supported on OpenCL.**
 
 ****
 
