@@ -46,9 +46,9 @@ git clone https://github.com/HSAFoundation/HSA-Runtime-AMD.git
 ## (Optional) Setting up HSA HOF ##
 
 * This is an optional tool to help you finalize HSA kernels at compile-time rather than runtime.  It can be found at: [https://github.com/HSAFoundation/HSA-HOF-AMD]
-* Simply copy hof to /opt/amd/bin
+* Simply copy hof to /opt/hsa/bin
 ```
-sudo cp hof /opt/amd/bin
+sudo cp hof /opt/hsa/bin
 ```
 In case you want to install HOF under another directory, please refer to "cmake options" below to see how to manually specify the path when you build Kalmar.
 
@@ -96,7 +96,7 @@ The default cmake options can be overridden on the command line.  For example:
     -DHSA_HEADER_DIR=/opt/hsa/include \
     -DHSA_LIBRARY_DIR=/opt/hsa/lib \
     -DHSA_KMT_LIBRARY_DIR=/opt/hsa/lib \
-    -DHSA_HOF_DIR=/opt/amd/bin \
+    -DHSA_HOF_DIR=/opt/hsa/bin \
     -DCMAKE_BUILD_TYPE=Release \
     -DCXXAMP_ENABLE_BOLT=OFF \
     -DHSAIL_COMPILER_DIR=/opt/amd/bin \
@@ -110,7 +110,7 @@ For all paths below, please **USE ABSOLUTE PATH** to prevent any undefined behav
 * HSA_HEADER_DIR : HSA runtime header include path (default is /opt/hsa/include )
 * HSA_LIBRARY_DIR : HSA runtime library path (default is /opt/hsa/lib )
 * HSA_KMT_LIBRARY_DIR : HSA kernel library path (default is /opt/hsa/lib )
-* HSA_HOF_DIR : HSA offline finalizer binary path (default is /opt/amd/bin )
+* HSA_HOF_DIR : HSA offline finalizer binary path (default is /opt/hsa/bin )
 * CMAKE_BUILD_TYPE : Release or Debug (default is Release )
 * CXXAMP_ENABLE_BOLT : ON / OFF AMD Bolt API (default is OFF )
 * HSAIL_COMPILER_DIR : Place where HSAIL compiler (HLC) source code is placed. By default Kalmar compiler will checkout a fresh copy from github if this variable is not set.
